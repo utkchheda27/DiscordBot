@@ -1,11 +1,10 @@
 
 const {Client,Discord,MessageEmbed,DiscordAPIError }= require("discord.js"); //client is way to communicate with discord server
 const client= new Client({intents:32509});//32509  gives access to all possibilities
-const Config=require("./config.json") //config file has the token
 const axios = require('axios').default;
 require("dotenv").config();
 
-const {weatherKey,newsKey,quotesKey}=process.env;
+const {weatherKey,newsKey,quotesKey,token}=process.env;
 
 //on ready event 
 client.on('ready', () => {
@@ -108,7 +107,7 @@ client.on("messageCreate",async msg=>{
                 .setTimestamp()
 
             msg.reply({
-                embeds:[cardmsg] //reply the requester with news card
+                embeds:[cardmsg] //reply the requester with a quote card
             })
        
     }
@@ -142,7 +141,7 @@ if(msg.content.startsWith("!news")){
 })
 
 //on login event
-client.login(Config.token)//makes the bot online
+client.login(token)//makes the bot online
 
 
 
